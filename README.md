@@ -2,6 +2,28 @@
 
 A starter template for building CodeIgniter 4 packages. Replace `YourVendor`, `YourPackage`, and related placeholders throughout the codebase before publishing.
 
+## Starting a New Project from This Template
+
+1. Create a new empty repo on GitHub (no README, no .gitignore).
+2. Clone this template and point it at your new repo:
+
+```bash
+git clone https://github.com/YOUR_ORG/ci-blank-addon.git your-package-name
+cd your-package-name
+git remote set-url origin https://github.com/YOUR_ORG/your-package-name.git
+git push -u origin main
+```
+
+3. Find and replace all placeholder strings throughout the codebase:
+
+| Placeholder | Replace with |
+|---|---|
+| `YourVendor` | Your Composer vendor name (e.g. `Acme`) |
+| `YourPackage` | Your package name (e.g. `MyAddon`) |
+| `vendor/package` | Your Composer package slug (e.g. `acme/my-addon`) |
+
+4. Run `composer install` (or `docker compose up`) to install dependencies.
+
 ## Requirements
 
 - PHP 8.4+
@@ -19,6 +41,11 @@ src/
 tests/
   ExampleTest.php
   _support/         # Test helpers and fixtures
+docs/
+  index.md          # Documentation home page
+  installation.md   # Installation guide
+  changelog.md      # Changelog
+mkdocs.yml          # MkDocs configuration (Material theme)
 ```
 
 ## Getting Started with Docker
@@ -70,6 +97,34 @@ Open a bash shell inside the container:
 
 ```bash
 composer docker:shell
+```
+
+## Documentation (MkDocs)
+
+Docs live in `docs/` and are built with [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/). Update `mkdocs.yml` with your `site_name`, `repo_url`, and `copyright` after cloning.
+
+**Install MkDocs** (requires Python 3 + pip):
+
+```bash
+pip3 install mkdocs mkdocs-material
+```
+
+**Preview locally** (live-reload at `http://127.0.0.1:8000`):
+
+```bash
+mkdocs serve
+```
+
+**Build static output** to `site/`:
+
+```bash
+mkdocs build
+```
+
+**Deploy to GitHub Pages** (done automatically by CI, but can be run manually):
+
+```bash
+mkdocs gh-deploy
 ```
 
 ## How the Package Integrates with CI4
